@@ -1,38 +1,36 @@
 package InterviewCode;
 
-import java.util.HashMap;
+import java.util.Arrays;
 
 public class LongestSubstringWithoutRepeatingCharacters
 {
     public static int lengthOfLongestSubstring(String s)
     {
-        if (s.length() == 0 || s.length() == 1)
+        int length = s.length();
+        if (length == 0)
         {
-            return s.length();
+            return 0;
         }
+        int[] countTable = new int[256];
+        Arrays.fill(countTable, -1);
+        int max = 1;    //the result
+        int start = 0;  //everytime the unique string start position
+        int end = 1;
 
-        HashMap<Character, Boolean> hashMap = new HashMap<Character, Boolean>();
-        int result = 0;
-        for (int i = 0; i < s.length() - 1; i++)
+        countTable[s.charAt(0)] = 0;
+        while (end < length)
         {
-            for (int j = i; j < s.length() - 1; j++)
+            int elementInArray = countTable[s.charAt(end)];
+            //Has not reached a duplicate char
+            if (elementInArray >= start)
             {
-                if (hashMap.containsKey(s.charAt(j)))
-                {
-                    if (hashMap.size() > result)
-                    {
-                        result = hashMap.size();
-                    }
-                    hashMap.clear();
-                    break;
-                }
-                else
-                {
-                    hashMap.put(s.charAt(j), true);
-                }
+                start = elementInArray + 1;
             }
+            max = Math.max(max, end - start + 1);
+            countTable[s.charAt(end)] = end;
+            end++;
         }
-        return result;
+        return max;
     }
 
     /**
