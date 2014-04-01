@@ -1,0 +1,18 @@
+# Ignore following files
+*.class
+*.apk
+*.dex
+*.ap_
+*.DS_Store
+*local.properties
+*lint.xml
+*/bin/*
+*/gen/*
+.metadata/*
+Su/StumbleUponRobolectricTest/tmp/*
+Su/*/.settings/*
+old_projects/*/bin/*
+old_projects/*/gen*
+Su/StumbleUpon3.0/.nrwork/*
+Su/.idea/*
+*.iml
