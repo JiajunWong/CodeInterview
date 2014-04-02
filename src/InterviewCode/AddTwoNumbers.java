@@ -6,87 +6,34 @@ public class AddTwoNumbers
 {
     public static ListNode addTwoNumbers(ListNode l1, ListNode l2)
     {
-        int addOne = 1;
-        boolean shouldAddOne = false;
-        ListNode temp = null;
-        ListNode result = temp;
-//
-//        if (l1.next == null && l2.next == null)
-//        {
-//            int total = l1.val + l2.val;
-//            if (total < 10)
-//                result = new ListNode(l1.val + l2.val);
-//            else
-//            {
-//                int val = total % 10;
-//                result.val = val;
-//                result.next = new ListNode(addOne);
-//            }
-//            return result;
-//        }
+        ListNode tem = new ListNode(0);
+        ListNode result = tem;
+        int offset = 0;
 
-        while (l1 != null && l2 != null)
+        while (l1 != null || l2 != null)
         {
-            if (shouldAddOne)
+            if (l1 != null)
             {
-                temp.val = temp.val + addOne;
-                shouldAddOne = false;
-            }
-
-            int total = l1.val + l2.val + temp.val;
-            int val = total % 10;
-            temp.val = val;
-
-            if (total >= 10)
-            {
-                shouldAddOne = true;
-            }
-
-            l1 = l1.next;
-            l2 = l2.next;
-            temp.next = new ListNode(0);
-            temp = temp.next;
-        }
-
-        //one list is null now
-        if (l1 == null && l2 != null)
-        {
-            while (l2 != null)
-            {
-                if (shouldAddOne)
-                    temp.val = l2.val + addOne;
-                else
-                    temp.val = l2.val;
-                l2 = l2.next;
-                temp.next = new ListNode(0);
-                temp = temp.next;
-            }
-        }
-        else if (l2 == null && l1 != null)
-        {
-            while (l1 != null)
-            {
-                if (shouldAddOne)
-                    temp.val = l1.val + addOne;
-                else
-                    temp.val = l1.val;
+                offset += l1.val;
                 l1 = l1.next;
-                temp.next = new ListNode(0);
-                temp = temp.next;
             }
-        }
-        else
-        {
-            if (shouldAddOne)
+            if (l2 != null)
             {
-                temp.val = temp.val + addOne;
-                temp.next = new ListNode(0);
-                temp = temp.next;
+                offset += l2.val;
+                l2 = l2.next;
             }
-        }
-        temp = null;
 
-        return result;
+            tem.next = new ListNode(offset % 10);
+            tem = tem.next;
+            offset /= 10;
+        }
+        
+        if (offset == 1)
+        {
+            tem.next = new ListNode(1);
+        }
+        
+        return result.next;
     }
 
     /**
@@ -94,11 +41,12 @@ public class AddTwoNumbers
      */
     public static void main(String[] args)
     {
-        ListNode node1 = new ListNode(0);
+        ListNode node1 = new ListNode(2);
         ListNode node2 = new ListNode(0);
 
         ListNode result = addTwoNumbers(node1, node2);
-        while(result != null){
+        while (result != null)
+        {
             System.out.println(result.val);
             result = result.next;
         }
