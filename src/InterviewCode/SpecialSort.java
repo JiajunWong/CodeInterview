@@ -1,6 +1,4 @@
 package InterviewCode;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 
 //1. count negative numbers, let's say K
