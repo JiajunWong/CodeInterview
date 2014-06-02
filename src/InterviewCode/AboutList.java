@@ -1,5 +1,6 @@
 package InterviewCode;
 
+import java.util.HashMap;
 import java.util.Stack;
 
 import Util.ListNode;
@@ -279,6 +280,107 @@ public class AboutList
     //9. get first common node from two lists
     public ListNode getFirstCommonNode(ListNode head1, ListNode head2)
     {
+        if (head1 == null || head2 == null)
+            return null;
+
+        //get length 
+        int len1 = 1;
+        ListNode temp1 = head1;
+        while (temp1.next != null)
+        {
+            temp1 = temp1.next;
+            len1++;
+        }
+        int len2 = 1;
+        ListNode temp2 = head2;
+        while (temp2.next != null)
+        {
+            temp2 = temp2.next;
+            len2++;
+        }
+
+        if (temp1 != temp2)
+            return null;
+
+        ListNode list1 = head1;
+        ListNode list2 = head2;
+
+        if (len1 > len2)
+        {
+            int offset = len1 - len2;
+            while (offset > 0)
+            {
+                offset--;
+                list1 = list1.next;
+            }
+        }
+        else
+        {
+            int offset = len2 - len1;
+            while (offset > 0)
+            {
+                offset--;
+                list2 = list2.next;
+            }
+        }
+
+        while (list1 != list2)
+        {
+            list1 = list1.next;
+            list2 = list2.next;
+        }
+
+        return list1;
+    }
+
+    //10. find the first node in the cycle list (fast-slow pointer way)
+    public ListNode findFristNodeInCycleList(ListNode head)
+    {
+        ListNode fast = head;
+        ListNode slow = head;
+
+        while (fast != null && fast.next != null)
+        {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast)
+            {
+                break;
+            }
+        }
+
+        if (fast == null || fast.next == null)
+        {
+            return null;
+        }
+
+        slow = head;
+        while (slow != fast)
+        {
+            slow = slow.next;
+            fast = fast.next;
+        }
+
+        return fast;
+    }
+
+    //10. find the first node in the cycle list (hash map way)
+    public ListNode findFirstNodeInCycleListHash(ListNode head)
+    {
+        HashMap<ListNode, Boolean> hashMap = new HashMap<ListNode, Boolean>();
+        while (head != null)
+        {
+            if (hashMap.get(head) == true)
+            {
+                return head;
+            }
+            else
+            {
+                hashMap.put(head, true);
+                head = head.next;
+            }
+        }
         
+        return null;
     }
 }
