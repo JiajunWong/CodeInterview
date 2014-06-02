@@ -380,7 +380,34 @@ public class AboutList
                 head = head.next;
             }
         }
-        
+
         return null;
+    }
+
+    //11. delete a node in O(n)
+    public void deleteListNode(ListNode head, ListNode delete)
+    {
+        if (delete == null)
+            return;
+        if (delete.next != null)
+        {
+            delete.val = delete.next.val;
+            delete.next = delete.next.next;
+        }
+        else
+        {
+            if (head == delete)
+                head = null;
+            else
+            {
+                ListNode tem = head;
+                while (tem.next != delete)
+                {
+                    tem = tem.next;
+                }
+                tem.next = null;
+            }
+        }
+
     }
 }
