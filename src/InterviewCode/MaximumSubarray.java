@@ -5,7 +5,7 @@ public class MaximumSubarray
     public int maxSubArray(int[] A)
     {
         int sum = 0;
-        int max = 0;
+        int max = Integer.MIN_VALUE;
         for (int i = 0; i < A.length; i++)
         {
             sum += A[i];
@@ -13,7 +13,7 @@ public class MaximumSubarray
             {
                 max = sum;
             }
-            else if (sum < 0)
+            if (sum < 0)
             {
                 sum = 0;
             }
