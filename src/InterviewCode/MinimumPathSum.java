@@ -9,11 +9,11 @@ public class MinimumPathSum
 
         for (int i = 1; i < dp.length; i++)
         {
-            dp[i][0] += dp[i - 1][0];
+            dp[i][0] = dp[i - 1][0] + grid[i][0];
         }
         for (int i = 1; i < dp[0].length; i++)
         {
-            dp[0][i] += dp[0][i - 1];
+            dp[0][i] = dp[0][i - 1] + grid[0][i];
         }
 
         for (int i = 1; i < dp.length; i++)
