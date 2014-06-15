@@ -10,4 +10,14 @@ public class ListNode
         this.val = val;
         next = null;
     }
+
+    public void print()
+    {
+        System.out.print(val + " ");
+        while (next != null)
+        {
+            System.out.print(next.val + " ");
+            next = next.next;
+        }
+    }
 }
