@@ -14,7 +14,7 @@ import Util.TreeNode;
  */
 public class AboutTree
 {
-    //1. get node numbers(recursive)
+    //1. get node numbers(recursive) DFS
     public int getNodeNumRec(TreeNode root)
     {
         if (root == null)
@@ -24,7 +24,7 @@ public class AboutTree
         return getNodeNumRec(root.left) + getNodeNumRec(root.right) + 1;
     }
 
-    //1. get node numbers(iterative)
+    //1. get node numbers(iterative) BFS
     public int getNodeNum(TreeNode root)
     {
         if (root == null)
@@ -327,6 +327,89 @@ public class AboutTree
     //8. get leaf node number(iterative)
     public int getLeafNum(TreeNode root)
     {
-        
+        if (root == null)
+        {
+            return 0;
+        }
+        int numberLeaf = 0;
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        queue.add(root);
+        while (!queue.isEmpty())
+        {
+            TreeNode node = queue.poll();
+            if (node.left != null)
+            {
+                queue.add(node.left);
+            }
+            if (node.right != null)
+            {
+                queue.add(node.right);
+            }
+            if (node.left == null && node.right == null)
+            {
+                numberLeaf++;
+            }
+        }
+        return numberLeaf;
+    }
+
+    //9. detect whether two trees are the same(recursive)
+    public boolean isSameRec(TreeNode root1, TreeNode root2)
+    {
+        if (root1 == null)
+        {
+            return root2 == null;
+        }
+
+        if (root2 == null)
+        {
+            return root1 == null;
+        }
+
+        if (root1.val != root2.val)
+        {
+            return false;
+        }
+
+        return isSameRec(root1.left, root2.left) && isSameRec(root1.right, root2.right);
+    }
+
+    //9. detect whether two trees are the same(iterative)
+    public boolean isSame(TreeNode root1, TreeNode root2)
+    {
+        if (root1 == null)
+        {
+            return root2 == null;
+        }
+        if (root2 == null)
+        {
+            return root1 == null;
+        }
+        Stack<TreeNode> stack1 = new Stack<TreeNode>();
+        Stack<TreeNode> stack2 = new Stack<TreeNode>();
+        stack1.push(root1);
+        stack2.push(root2);
+        while (!stack1.isEmpty() && !stack2.isEmpty())
+        {
+            TreeNode node1 = stack1.pop();
+            TreeNode node2 = stack2.pop();
+            if (node1 == null && node2 == null)
+            {
+                return true;
+            }
+            else if (node1 != null && node2 != null && node1.val == node2.val)
+            {
+                //TODO: can stack push null?
+                stack1.push(node1.left);
+                stack1.push(node1.right);
+                stack2.push(node2.left);
+                stack2.push(node2.right);
+            }
+            else
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }
