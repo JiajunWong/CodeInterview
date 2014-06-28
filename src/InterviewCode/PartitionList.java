@@ -1,6 +1,5 @@
 package InterviewCode;
 
-import Util.ListNode;
 
 public class PartitionList
 {
