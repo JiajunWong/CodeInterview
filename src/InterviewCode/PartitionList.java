@@ -1,33 +1,37 @@
 package InterviewCode;
 
+import Util.ListNode;
 
 public class PartitionList
 {
-    //TODO: time exceeded
-    //    public ListNode partition(ListNode head, int x)
-    //    {
-    //        ListNode head1 = new ListNode(0);
-    //        ListNode head2 = new ListNode(0);
-    //        ListNode p1 = head1;
-    //        ListNode p2 = head2;
-    //        while (head != null)
-    //        {
-    //            if (head.val < x)
-    //            {
-    //                p1.next = head;
-    //                p1 = p1.next;
-    //            }
-    //            else
-    //            {
-    //                p2.next = head;
-    //                p2 = p2.next;
-    //            }
-    //            head = head.next;
-    //        }
-    //        if (head2.next != null)
-    //        {
-    //            p1.next = head2.next;
-    //        }
-    //        return head1.next;
-    //    }
+    public ListNode partition(ListNode head, int x)
+    {
+        if (head == null || head.next == null)
+        {
+            return head;
+        }
+        ListNode pre = new ListNode(0);
+        ListNode post = new ListNode(0);
+        ListNode cur = head, tem1 = pre, tem2 = post;
+        while (cur != null)
+        {
+            if (cur.val < x)
+            {
+                pre.next = new ListNode(cur.val);//!!!!!!!!!!only copy the val!!!!!!!!
+                pre = pre.next;
+            }
+            else
+            {
+                post.next = new ListNode(cur.val);
+                post = post.next;
+            }
+            cur = cur.next;
+        }
+        if (pre != null)
+        {
+            pre.next = tem2.next;
+        }
+        return tem1.next;
+    }
+
 }

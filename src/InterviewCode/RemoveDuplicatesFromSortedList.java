@@ -27,11 +27,4 @@ public class RemoveDuplicatesFromSortedList
         }
         return head;
     }
-
-    public static void main(String[] args)
-    {
-        ListNode listNode = new ListNode(1);
-        listNode.next = new ListNode(2);
-        deleteDuplicates(listNode).print();
-    }
 }

@@ -38,7 +38,7 @@ public class AboutList
         return counter;
     }
 
-    //2. reverse a list (iterative)
+    //2. reverse a list (iterative) -- not broke the original list
     public ListNode reverseList(ListNode head)
     {
         if (head == null || head.next == null)
@@ -57,6 +57,25 @@ public class AboutList
         }
 
         return newHead;
+    }
+
+    //2. reverse a list (iterative) -- broke the orignal list
+    public ListNode reverseListBr(ListNode head)
+    {
+        if (head == null || head.next == null)
+        {
+            return head;
+        }
+        ListNode cur = head;
+        ListNode post = cur.next;
+        while (post != null)
+        {
+            ListNode tem = post.next;
+            post.next = cur;
+            cur = post;
+            post = tem;
+        }
+        return cur;
     }
 
     //2. reverse a list (recursive)
