@@ -6,40 +6,23 @@ public class RotateList
 {
     public static ListNode routateRight(ListNode head, int n)
     {
-        if (head == null || head.next == null || n == 0)
-        {
+        if (head == null || n == 0)
             return head;
-        }
-
-        ListNode tail = head;
-        int length = 1;
-        while (tail.next != null)
+        ListNode p = head;
+        int len = 1;//since p is already point to head
+        while (p.next != null)
         {
-            length++;
-            tail = tail.next;
+            len++;
+            p = p.next;
         }
-        int offset = length - n % length;
-
-        ListNode newTail = head;
-        while (offset > 1)
+        p.next = head; //form a loop
+        n = n % len;
+        for (int i = 0; i < len - n; i++)
         {
-            newTail = newTail.next;
-            offset--;
-        }
-        ListNode result = newTail.next;
-        tail.next = head;
-        newTail.next = null;
-
-        return result;
+            p = p.next;
+        } //now p points to the prev of the new head
+        head = p.next;
+        p.next = null;
+        return head;
     }
-
-    /**
-     * @param args
-     */
-    public static void main(String[] args)
-    {
-        // TODO Auto-generated method stub
-
-    }
-
 }
