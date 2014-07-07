@@ -31,6 +31,7 @@ public class WordLadder
             for (int i = 0; i < curWord.length(); i++)
             {
                 char[] chars = curWord.toCharArray();
+                //watch out! here is char for a to z!!!
                 for (char c = 'a'; c <= 'z'; c++)
                 {
                     chars[i] = c;
