@@ -427,6 +427,326 @@ public class AboutList
                 tem.next = null;
             }
         }
+    }
 
+    //12. sort list
+    public ListNode sortList(ListNode head)
+    {
+        if (head == null || head.next == null)
+        {
+            return head;
+        }
+        ListNode fast = head;
+        ListNode slow = head;
+        while (fast.next != null && fast.next.next != null)
+        {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        fast = slow.next;
+        slow.next = null;
+        slow = sortList(head);
+        fast = sortList(fast);
+        return merge(slow, fast);
+    }
+
+    private ListNode merge(ListNode slow, ListNode fast)
+    {
+        ListNode head = new ListNode(0);
+        ListNode cur = head;
+        while (slow != null && fast != null)
+        {
+            if (slow.val <= fast.val)
+            {
+                cur.next = slow;
+                slow = slow.next;
+            }
+            else
+            {
+                cur.next = fast;
+                fast = fast.next;
+            }
+            cur = cur.next;
+        }
+
+        if (slow != null)
+        {
+            cur.next = slow;
+        }
+        if (fast != null)
+        {
+            cur.next = fast;
+        }
+
+        return head.next;
+    }
+
+    //insersion sort list
+    public ListNode insertionSortList(ListNode head)
+    {
+        ListNode newHead = new ListNode(0);
+        ListNode helper = newHead;
+        ListNode cur = head;
+        while (cur != null)
+        {
+            ListNode next = cur.next;
+            helper = newHead;
+            while (helper.next != null && helper.next.val < cur.val)
+            {
+                helper = helper.next;
+            }
+            cur.next = helper.next;
+            helper.next = cur;
+            cur = next;
+        }
+        return newHead.next;
+    }
+
+    //reorder list
+    public void reorderList(ListNode head)
+    {
+        if (head == null || head.next == null || head.next.next == null)
+        {
+            return;
+        }
+        ListNode fast = head, slow = head;
+        while (fast != null && fast.next != null)
+        {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        //reverse the list
+        ListNode head1 = head;
+        ListNode head2 = slow.next;
+        slow.next = null;
+        ListNode cur = head2, post = cur.next;
+        cur.next = null;
+        while (post != null)
+        {
+            ListNode tem = post.next;
+            post.next = cur;
+            cur = post;
+            post = tem;
+        }
+        head2 = cur;
+        //merge
+        ListNode a = head1;
+        ListNode b = head2;
+        while (b != null)
+        {
+            ListNode tem1 = a.next;
+            ListNode tem2 = b.next;
+            a.next = b;
+            b.next = tem1;
+            a = tem1;
+            b = tem2;
+        }
+    }
+
+    //Reverse Linked List II 
+    public ListNode reverseBetween(ListNode head, int m, int n)
+    {
+        if (head == null || head.next == null)
+        {
+            return head;
+        }
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode pre = dummy, cur = null, post = null;
+        for (int i = 1; i <= n; i++)
+        {
+            if (i < m)
+            {
+                pre = pre.next;
+            }
+            else if (i == m)
+            {
+                cur = pre.next;
+                post = cur.next;
+            }
+            else
+            {
+                cur.next = post.next;
+                post.next = pre.next;
+                pre.next = post;
+                post = cur.next;
+            }
+        }
+        return dummy.next;
+    }
+
+    //Partition List
+    public ListNode partition(ListNode head, int x)
+    {
+        if (head == null || head.next == null)
+        {
+            return head;
+        }
+        ListNode pre = new ListNode(0);
+        ListNode post = new ListNode(0);
+        ListNode cur = head, tem1 = pre, tem2 = post;
+        while (cur != null)
+        {
+            if (cur.val < x)
+            {
+                pre.next = new ListNode(cur.val);
+                pre = pre.next;
+            }
+            else
+            {
+                post.next = new ListNode(cur.val);
+                post = post.next;
+            }
+            cur = cur.next;
+        }
+        if (pre != null)
+        {
+            pre.next = tem2.next;
+        }
+        return tem1.next;
+    }
+
+    //Remove Duplicates from Sorted List 
+    public ListNode deleteDuplicates(ListNode head)
+    {
+        if (head == null || head.next == null)
+        {
+            return head;
+        }
+        ListNode pre = head;
+        ListNode cur = head.next;
+        while (cur != null)
+        {
+            if (cur.val == pre.val)
+            {
+                pre.next = cur.next;
+                cur = cur.next;
+            }
+            else
+            {
+                pre = cur;
+                cur = cur.next;
+            }
+        }
+        return head;
+    }
+
+    //Remove Duplicates from Sorted List II
+    public ListNode deleteDuplicatesII(ListNode head)
+    {
+        if (head == null || head.next == null)
+        {
+            return head;
+        }
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+
+        ListNode cur = dummy;
+        while (cur.next != null)
+        {
+            ListNode post = cur.next;
+            while (post.next != null && post.next.val == post.val)
+            {
+                post = post.next;
+            }
+            if (post != cur.next)
+            {
+                cur.next = post.next;
+            }
+            else
+            {
+                cur = cur.next;
+            }
+        }
+        return dummy.next;
+    }
+
+    //Merge Two Sorted Lists
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2)
+    {
+        if (l1 == null)
+        {
+            return l2;
+        }
+        if (l2 == null)
+        {
+            return l1;
+        }
+
+        ListNode newHead = new ListNode(0);
+        ListNode cur = newHead;
+        while (l1 != null && l2 != null)
+        {
+            if (l1.val <= l2.val)
+            {
+                cur.next = new ListNode(l1.val);
+                l1 = l1.next;
+            }
+            else
+            {
+                cur.next = new ListNode(l2.val);
+                l2 = l2.next;
+            }
+            cur = cur.next;
+        }
+        if (l1 != null)
+        {
+            cur.next = l1;
+        }
+        if (l2 != null)
+        {
+            cur.next = l2;
+        }
+        return newHead.next;
+    }
+
+    //Rotate List 
+    public ListNode rotateRight(ListNode head, int n)
+    {
+        if (head == null || n == 0)
+            return head;
+        ListNode p = head;
+        int len = 1;//since p is already point to head
+        while (p.next != null)
+        {
+            len++;
+            p = p.next;
+        }
+        p.next = head; //form a loop
+        n = n % len;
+        for (int i = 0; i < len - n; i++)
+        {
+            p = p.next;
+        } //now p points to the prev of the new head
+        head = p.next;
+        p.next = null;
+        return head;
+    }
+
+    //Remove Nth Node From End of List
+    public ListNode removeNthFromEnd(ListNode head, int n)
+    {
+        ListNode fast = head;
+        ListNode slow = head;
+
+        for (int i = 0; i < n; i++)
+        {
+            fast = fast.next;
+        }
+
+        if (fast == null)
+        {
+            head = head.next;
+            return head;
+        }
+
+        while (fast.next != null)
+        {
+            fast = fast.next;
+            slow = slow.next;
+        }
+
+        slow.next = slow.next.next;
+        return head;
     }
 }

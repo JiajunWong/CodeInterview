@@ -12,10 +12,6 @@ public class RemoveNthNodeFromEndofList
         for (int i = 0; i < n; i++)
         {
             fast = fast.next;
-            if (fast == null)
-            {
-                return head;//there is no element can be removed.
-            }
         }
 
         if (fast == null)
@@ -33,14 +29,4 @@ public class RemoveNthNodeFromEndofList
         slow.next = slow.next.next;
         return head;
     }
-
-    /**
-     * @param args
-     */
-    public static void main(String[] args)
-    {
-        // TODO Auto-generated method stub
-
-    }
-
 }
