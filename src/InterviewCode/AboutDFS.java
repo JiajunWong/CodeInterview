@@ -314,12 +314,12 @@ public class AboutDFS
         return num <= 255 && num > 0;
     }
 
+    //Validate Binary Search Tree
     public boolean isValidBST(TreeNode root)
     {
         return isValidate(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
 
-    //Validate Binary Search Tree
     private boolean isValidate(TreeNode root, int min, int max)
     {
         if (root == null)
@@ -332,4 +332,131 @@ public class AboutDFS
         }
         return isValidate(root.left, min, root.val) && isValidate(root.right, root.val, max);
     }
+
+    // Recover Binary Search Tree
+    TreeNode pre;
+    TreeNode first;
+    TreeNode second;
+
+    private void inorder(TreeNode root)
+    {
+        if (root == null)
+            return;
+        inorder(root.left);
+        if (pre == null)
+        {
+            pre = root;
+        }
+        else
+        {
+            if (pre.val > root.val)
+            {
+                if (first == null)
+                {
+                    first = pre;
+                }
+                second = root;
+            }
+            pre = root;
+        }
+        inorder(root.right);
+    }
+
+    public void recoverTree(TreeNode root)
+    {
+        pre = null;
+        first = null;
+        second = null;
+        inorder(root);
+        if (first != null && second != null)
+        {
+            int tem = first.val;
+            first.val = second.val;
+            second.val = tem;
+        }
+    }
+
+    //Same Tree
+    public boolean isSameTree(TreeNode p, TreeNode q)
+    {
+        if (p == null)
+        {
+            return q == null;
+        }
+        if (q == null)
+        {
+            return p == null;
+        }
+        if (p.val != q.val)
+        {
+            return false;
+        }
+        return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+    }
+
+    //Symmetric Tree
+    public boolean isSymmetric(TreeNode root)
+    {
+        if (root == null)
+        {
+            return true;
+        }
+
+        return isSymmetric(root.left, root.right);
+    }
+
+    private boolean isSymmetric(TreeNode left, TreeNode right)
+    {
+        if (left == null)
+        {
+            return right == null;
+        }
+        if (right == null)
+        {
+            return left == null;
+        }
+        if (left.val != right.val)
+        {
+            return false;
+        }
+        return isSymmetric(left.left, right.right) && isSymmetric(left.right, right.left);
+    }
+
+    //Construct Binary Tree from Preorder and Inorder Traversal
+    public TreeNode buildTree(int[] preorder, int[] inorder)
+    {
+        int preLen = preorder.length;
+        int inLen = inorder.length;
+        return dfs(preorder, 0, preLen - 1, inorder, 0, inLen - 1);
+    }
+
+    private TreeNode dfs(int[] preorder, int preStart, int preEnd, int[] inorder, int inStart, int inEnd)
+    {
+        if (preStart > preEnd)
+        {
+            return null;
+        }
+
+        int rootVal = preorder[preStart];
+        int rootIndex = 0;
+
+        for (int i = inStart; i <= inEnd; i++)
+        {
+            if (inorder[i] == rootVal)
+            {
+                rootIndex = i;
+                break;
+            }
+        }
+
+        int len = rootIndex - inStart;
+        TreeNode root = new TreeNode(rootVal);
+        root.left = dfs(preorder, preStart + 1, preStart + len, inorder, inStart, rootIndex - 1);
+        root.right = dfs(preorder, preStart + len + 1, preEnd, inorder, rootIndex + 1, inEnd);
+
+        return root;
+    }
+    
+    
+    
 }
