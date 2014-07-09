@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import Util.TreeNode;
+
 public class AboutDFS
 {
     //Letter Combinations of a Phone Number
@@ -310,5 +312,24 @@ public class AboutDFS
         }
         int num = Integer.parseInt(s);
         return num <= 255 && num > 0;
+    }
+
+    public boolean isValidBST(TreeNode root)
+    {
+        return isValidate(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+
+    //Validate Binary Search Tree
+    private boolean isValidate(TreeNode root, int min, int max)
+    {
+        if (root == null)
+        {
+            return true;
+        }
+        if (min >= root.val || max <= root.val)
+        {
+            return false;
+        }
+        return isValidate(root.left, min, root.val) && isValidate(root.right, root.val, max);
     }
 }
