@@ -456,7 +456,87 @@ public class AboutDFS
 
         return root;
     }
-    
-    
-    
+
+    //Convert Sorted Array to Binary Search Tree
+    public TreeNode sortedArrayToBST(int[] num)
+    {
+        if (num == null || num.length == 0)
+        {
+            return null;
+        }
+        return dfs(num, 0, num.length - 1);
+    }
+
+    private TreeNode dfs(int[] num, int start, int end)
+    {
+        if (start > end)
+        {
+            return null;
+        }
+        int mid = (end - start) / 2 + start;
+        TreeNode root = new TreeNode(num[mid]);
+        root.left = dfs(num, start, mid - 1);
+        root.right = dfs(num, mid + 1, end);
+        return root;
+    }
+
+    //Balanced Binary Tree
+    public boolean isBalanced(TreeNode root)
+    {
+        if (root == null)
+        {
+            return true;
+        }
+        if (Math.abs(getDepth(root.left) - getDepth(root.right)) > 1)
+        {
+            return false;
+        }
+        return isBalanced(root.left) && isBalanced(root.right);
+    }
+
+    private int getDepth(TreeNode root)
+    {
+        if (root == null)
+        {
+            return 0;
+        }
+        return 1 + Math.max(getDepth(root.left), getDepth(root.right));
+    }
+
+    //Minimum Depth of Binary Tree
+    public int minDepth(TreeNode root)
+    {
+        if (root == null)
+        {
+            return 0;
+        }
+        int a = minDepth(root.left);
+        int b = minDepth(root.right);
+        if (a * b != 0)
+        {
+            return Math.min(a, b) + 1;
+        }
+        else if (a == 0)
+        {
+            return b + 1;
+        }
+        else
+        {
+            return a + 1;
+        }
+    }
+
+    //Path Sum
+    public boolean hasPathSum(TreeNode root, int sum)
+    {
+        if (root == null)
+        {
+            return false;
+        }
+        if (root.left == null && root.right == null && root.val == sum)
+        {
+            return true;
+        }
+        return hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val);
+    }
 }
