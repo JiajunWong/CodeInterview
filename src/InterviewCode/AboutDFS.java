@@ -539,4 +539,188 @@ public class AboutDFS
         }
         return hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val);
     }
+
+    //Populating Next Right Pointers in Each Node
+    public class TreeLinkNode
+    {
+        int val;
+        TreeLinkNode left, right, next;
+
+        TreeLinkNode(int x)
+        {
+            val = x;
+        }
+    }
+
+    public void connect(TreeLinkNode root)
+    {
+        if (root == null)
+        {
+            return;
+        }
+        if (root.left != null)
+        {
+            root.left.next = root.right;
+        }
+        if (root.right != null && root.next != null)
+        {
+            root.right.next = root.next.left;
+        }
+        connect(root.left);
+        connect(root.right);
+    }
+
+    //Populating Next Right Pointers in Each Node II 
+    public void connectII(TreeLinkNode root)
+    {
+        if (root == null)
+        {
+            return;
+        }
+        TreeLinkNode rootNext = root.next;
+        TreeLinkNode next = null;
+        while (rootNext != null)
+        {
+            if (rootNext.left != null)
+            {
+                next = rootNext.left;
+                break;
+            }
+            else if (rootNext.right != null)
+            {
+                next = rootNext.right;
+                break;
+            }
+            else
+            {
+                rootNext = rootNext.next;
+            }
+        }
+        if (root.left != null)
+        {
+            if (root.right != null)
+            {
+                root.left.next = root.right;
+            }
+            else
+            {
+                root.left.next = next;
+            }
+        }
+        if (root.right != null)
+        {
+            root.right.next = next;
+        }
+        //!!!! right first!!!
+        connect(root.right);
+        connect(root.left);
+    }
+
+    //Binary Tree Maximum Path Sum
+    public int maxPathSum(TreeNode root)
+    {
+        int[] max = { Integer.MIN_VALUE };
+        dfs(root, max);
+        return max[0];
+    }
+
+    private int dfs(TreeNode root, int[] max)
+    {
+        if (root == null)
+        {
+            return 0;
+        }
+        int leftSubMaxSum = dfs(root.left, max);
+        int rightSubMaxSum = dfs(root.right, max);
+        int arch = leftSubMaxSum + root.val + rightSubMaxSum;
+
+        int maxPathAcrossRootToParent = Math.max(root.val, Math.max(leftSubMaxSum, rightSubMaxSum) + root.val);
+        max[0] = Math.max(max[0], Math.max(arch, maxPathAcrossRootToParent));
+        return maxPathAcrossRootToParent;
+    }
+
+    //Sum Root to Leaf Numbers
+    public int sumNumbers(TreeNode root)
+    {
+        int[] result = { 0 };
+        int current = 0;
+        dfs(root, current, result);
+        return result[0];
+    }
+
+    private void dfs(TreeNode root, int current, int[] result)
+    {
+        if (root == null)
+        {
+            return;
+        }
+        current = current * 10 + root.val;
+        if (root.left == null && root.right == null)
+        {
+            result[0] += current;
+            return;
+        }
+        dfs(root.left, current, result);
+        dfs(root.right, current, result);
+    }
+
+    //Palindrome Partitioning
+    public List<List<String>> partition(String s)
+    {
+        ArrayList<List<String>> result = new ArrayList<List<String>>();
+        if (s == null || s.length() == 0)
+        {
+            return result;
+        }
+        ArrayList<String> array = new ArrayList<String>();
+        HashMap<String, Boolean> map = new HashMap<String, Boolean>();
+        dfs(s, 0, map, result, array);
+        return result;
+    }
+
+    private void dfs(String s, int index, HashMap<String, Boolean> map, ArrayList<List<String>> result, ArrayList<String> array)
+    {
+        if (index == s.length())
+        {
+            result.add(new ArrayList<String>(array));
+            return;
+        }
+        for (int i = index; i < s.length(); i++)
+        {
+            boolean isPalindrome = false;
+            String subString = s.substring(index, i + 1);
+            if (map.get(subString) != null)
+            {
+                isPalindrome = map.get(subString);
+            }
+            else
+            {
+                isPalindrome = checkIsPalindrome(subString);
+                map.put(subString, isPalindrome);
+            }
+            if (isPalindrome)
+            {
+                array.add(subString);
+                dfs(s, i + 1, map, result, array);
+                //TODO: why remove last???
+                array.remove(array.size() - 1);
+            }
+        }
+    }
+
+    private boolean checkIsPalindrome(String s)
+    {
+        int i = 0;
+        int j = s.length() - 1;
+        while (i < j)
+        {
+            if (s.charAt(i) != s.charAt(j))
+            {
+                return false;
+            }
+            i++;
+            j--;
+        }
+        return true;
+    }
 }
