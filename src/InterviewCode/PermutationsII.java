@@ -7,11 +7,11 @@ public class PermutationsII
     public ArrayList<ArrayList<Integer>> permuteUnique(int[] num)
     {
         ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
-        permuteUnique(num, 0, result);
+        dfs(num, 0, result);
         return result;
     }
 
-    private void permuteUnique(int[] num, int start, ArrayList<ArrayList<Integer>> result)
+    private void dfs(int[] num, int start, ArrayList<ArrayList<Integer>> result)
     {
         if (start >= num.length)
         {
@@ -24,7 +24,7 @@ public class PermutationsII
             if (!isContainsDuplicate(num, start, i))
             {
                 swap(num, start, i);
-                permuteUnique(num, start + 1, result);
+                dfs(num, start + 1, result);
                 swap(num, start, i);
             }
         }
@@ -58,14 +58,4 @@ public class PermutationsII
         arr[a] = arr[b];
         arr[b] = temp;
     }
-
-    /**
-     * @param args
-     */
-    public static void main(String[] args)
-    {
-        // TODO Auto-generated method stub
-
-    }
-
 }
