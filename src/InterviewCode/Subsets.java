@@ -30,4 +30,26 @@ public class Subsets
         result.add(arrayList);
         return result;
     }
+
+    //recursive
+    public List<List<Integer>> subsetsRec(int[] S)
+    {
+        ArrayList<List<Integer>> result = new ArrayList<List<Integer>>();
+        ArrayList<Integer> array = new ArrayList<Integer>();
+        Arrays.sort(S);
+        result.add(array);
+        dfs(result, array, S, 0);
+        return result;
+    }
+
+    private void dfs(ArrayList<List<Integer>> result, ArrayList<Integer> array, int[] S, int index)
+    {
+        for (int i = index; i <= S.length - 1; i++)
+        {
+            array.add(S[i]);
+            result.add(new ArrayList<Integer>(array));
+            dfs(result, array, S, i + 1);
+            array.remove(array.size() - 1);
+        }
+    }
 }
