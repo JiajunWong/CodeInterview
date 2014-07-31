@@ -4,9 +4,9 @@ public class RegularExpressionMatching
 {
     public static boolean isMatch(String s, String p)
     {
-        if (s.length() == 0)
+        if (p.length() == 0)
         {
-            return p.length() == 0;
+            return s.length() == 0;
         }
 
         if (p.length() == 1 || p.charAt(1) != '*')
@@ -15,7 +15,7 @@ public class RegularExpressionMatching
             {
                 return false;
             }
-            return isMatch(s.substring(0), p.substring(0));
+            return isMatch(s.substring(1), p.substring(1));
         }
         else
         {
