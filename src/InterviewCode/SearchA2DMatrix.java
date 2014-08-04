@@ -22,11 +22,11 @@ public class SearchA2DMatrix
             }
             else if (matrix[x][y] < target)
             {
-                min++;
+                min = mid + 1;
             }
             else
             {
-                max--;
+                max = mid - 1;
             }
         }
         return false;

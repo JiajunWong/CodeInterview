@@ -51,15 +51,70 @@ public class SearchForARange
         return result;
     }
 
-    /**
-     * @param args
-     */
-    public static void main(String[] args)
+    //another version:
+    public int[] searchRange2(int[] A, int target)
     {
-        int A[] = { 1, 3 };
-        int result[] = searchRange(A, 1);
-        for (int i : result)
-            System.out.println(i);
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        int[] ret = new int[2];
+        ret[0] = search_left_most(A, target);
+        ret[1] = search_right_most(A, target);
+        return ret;
     }
 
+    public int search_left_most(int[] A, int target)
+    {
+        int left = 0;
+        int right = A.length - 1;
+        while (right >= left)
+        {
+            int mid = (right + left) / 2;
+            if (A[mid] == target)
+            {
+                if (mid == 0)
+                    return mid;
+                if (A[mid - 1] == target)
+                    right = mid - 1;
+                else
+                    return mid;
+            }
+            else if (A[mid] > target)
+            {
+                right = mid - 1;
+            }
+            else if (A[mid] < target)
+            {
+                left = mid + 1;
+            }
+        }
+        return -1;
+    }
+
+    public int search_right_most(int[] A, int target)
+    {
+        int left = 0;
+        int right = A.length - 1;
+        while (right >= left)
+        {
+            int mid = (right + left) / 2;
+            if (A[mid] == target)
+            {
+                if (mid == A.length - 1)
+                    return mid;
+                if (A[mid + 1] == target)
+                    left = mid + 1;
+                else
+                    return mid;
+            }
+            else if (A[mid] > target)
+            {
+                right = mid - 1;
+            }
+            else if (A[mid] < target)
+            {
+                left = mid + 1;
+            }
+        }
+        return -1;
+    }
 }
