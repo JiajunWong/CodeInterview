@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+//http://blog.csdn.net/u011095253/article/details/9158397
 public class SubsetsII
 {
     public List<List<Integer>> subsetsWithDup(int[] num)
