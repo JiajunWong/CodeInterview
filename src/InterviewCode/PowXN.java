@@ -30,14 +30,4 @@ public class PowXN
             return tem * tem * x;
         }
     }
-
-    /**
-     * @param args
-     */
-    public static void main(String[] args)
-    {
-        // TODO Auto-generated method stub
-
-    }
-
 }

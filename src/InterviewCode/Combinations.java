@@ -8,30 +8,23 @@ public class Combinations
     public List<List<Integer>> combine(int n, int k)
     {
         ArrayList<List<Integer>> result = new ArrayList<List<Integer>>();
-        ArrayList<Integer> arrayList = new ArrayList<Integer>();
-
-        if (n < k)
-        {
-            return result;
-        }
-        helper(n, k, result, arrayList, 1);
+        ArrayList<Integer> array = new ArrayList<Integer>();
+        dfs(n, k, result, array, 1);
         return result;
     }
 
-    private void helper(int n, int k, ArrayList<List<Integer>> result, ArrayList<Integer> arrayList, int index)
+    private void dfs(int n, int k, ArrayList<List<Integer>> result, ArrayList<Integer> array, int index)
     {
-        if (arrayList.size() == k)
+        if (array.size() == k)
         {
-            result.add(new ArrayList<Integer>(arrayList));
+            result.add(new ArrayList<Integer>(array));
+            return;
         }
-        else
+        for (int i = index; i <= n; i++)
         {
-            for (int i = index; i <= n; i++)
-            {
-                arrayList.add(i);
-                helper(n, k, result, arrayList, index + 1);
-                arrayList.remove(arrayList.size() - 1);
-            }
+            array.add(i);
+            dfs(n, k, result, array, i + 1);
+            array.remove(array.size() - 1);
         }
     }
 }
