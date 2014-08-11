@@ -51,4 +51,42 @@ public class ThreeSumClosest
 
         return result;
     }
+
+    public int threeSumClosest2(int[] num, int target)
+    {
+        int min = Integer.MAX_VALUE;
+        int result = 0;
+
+        Arrays.sort(num);
+
+        for (int i = 0; i < num.length; i++)
+        {
+            int j = i + 1;
+            int k = num.length - 1;
+            while (j < k)
+            {
+                int sum = num[i] + num[j] + num[k];
+                int diff = Math.abs(sum - target);
+                if (diff < min)
+                {
+                    min = diff;
+                    result = sum;
+                }
+                if (sum < target)
+                {
+                    j++;
+                }
+                else if (sum > target)
+                {
+                    k--;
+                }
+                else
+                {
+                    return target;
+                }
+            }
+        }
+
+        return result;
+    }
 }
