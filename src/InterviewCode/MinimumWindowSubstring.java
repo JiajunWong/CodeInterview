@@ -40,7 +40,7 @@ public class MinimumWindowSubstring
                 {
                     while (!needToFind.containsKey(S.charAt(begin)) || hasFind.get(S.charAt(begin)) > needToFind.get(S.charAt(begin)))
                     {
-                        if (needToFind.containsKey(S.charAt(begin)) && hasFind.get(S.charAt(begin)) > needToFind.get(S.charAt(begin)))
+                        if (needToFind.containsKey(S.charAt(begin)))
                         {
                             hasFind.put(S.charAt(begin), hasFind.get(S.charAt(begin)) - 1);
                         }

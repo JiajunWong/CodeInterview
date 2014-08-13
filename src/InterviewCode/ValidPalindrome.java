@@ -12,7 +12,7 @@ public class ValidPalindrome
         while (start < end)
         {
             char i = s.charAt(start), j = s.charAt(end);
-            while (!isValid(s.charAt(start)) && start < s.length())
+            while (!isValid(s.charAt(start)) && start < s.length() - 1)
             {
                 start++;
                 i = s.charAt(start);
