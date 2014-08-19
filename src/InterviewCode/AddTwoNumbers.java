@@ -27,29 +27,12 @@ public class AddTwoNumbers
             tem = tem.next;
             offset /= 10;
         }
-        
+
         if (offset == 1)
         {
             tem.next = new ListNode(1);
         }
-        
+
         return result.next;
     }
-
-    /**
-     * @param args
-     */
-    public static void main(String[] args)
-    {
-        ListNode node1 = new ListNode(2);
-        ListNode node2 = new ListNode(0);
-
-        ListNode result = addTwoNumbers(node1, node2);
-        while (result != null)
-        {
-            System.out.println(result.val);
-            result = result.next;
-        }
-    }
-
 }
