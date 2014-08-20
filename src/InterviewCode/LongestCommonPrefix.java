@@ -23,14 +23,4 @@ public class LongestCommonPrefix
         }
         return strs[0].substring(0, i);
     }
-
-    /**
-     * @param args
-     */
-    public static void main(String[] args)
-    {
-        // TODO Auto-generated method stub
-
-    }
-
 }

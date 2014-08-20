@@ -16,16 +16,24 @@ public class SwapNodesinPairs
         second.next = first;
         first.next = swapPairs(third);
         return second;
-
     }
 
-    /**
-     * @param args
-     */
-    public static void main(String[] args)
+    public ListNode swapPairs2(ListNode head)
     {
-        // TODO Auto-generated method stub
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode cur = dummy, post = head;
 
+        while (post != null && post.next != null)
+        {
+            ListNode temp = post.next.next;
+            post.next.next = cur.next;
+            cur.next = post.next;
+            post.next = temp;
+            cur = post;
+            post = cur.next;
+        }
+
+        return dummy.next;
     }
-
 }
