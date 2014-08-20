@@ -29,6 +29,24 @@ public class ListNode
         return one;
     }
 
+    public static ListNode autoInit(int len)
+    {
+        if (len <= 0)
+        {
+            throw new IllegalArgumentException();
+        }
+
+        ListNode result = new ListNode(0);
+        ListNode cur = result;
+        for (int i = 0; i < len; i++)
+        {
+            ListNode node = new ListNode(i + 1);
+            cur.next = node;
+            cur = cur.next;
+        }
+        return result.next;
+    }
+
     public static void printList(ListNode head)
     {
         while (head != null)

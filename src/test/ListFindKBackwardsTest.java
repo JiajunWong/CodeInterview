@@ -28,10 +28,27 @@ public class ListFindKBackwardsTest
         return slow;
     }
 
+    private static int counter = 0;
+
+    public static ListNode findKBackwardsRec(ListNode head, int k)
+    {
+        while (head == null || k == 0)
+        {
+            return null;
+        }
+        findKBackwardsRec(head.next, k);
+        counter++;
+        if (counter == k)
+        {
+            return head;
+        }
+        return null;
+    }
+
     public static void main(String[] args)
     {
         ListNode one = ListNode.lazyInit();
-        ListNode result = findKBackwards(one, 7);
+        ListNode result = findKBackwardsRec(one, 6);
         if (result == null)
         {
             System.out.println("null");

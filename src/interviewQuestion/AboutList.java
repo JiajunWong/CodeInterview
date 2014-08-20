@@ -5,7 +5,6 @@ import java.util.Stack;
 
 import util.ListNode;
 
-
 /**
  * @author jwang
  *
@@ -137,23 +136,39 @@ public class AboutList
     //4. find the middle element
     public ListNode findMidNode(ListNode head)
     {
-        if (head == null || head.next == null)
+        //This is right.
+        if (head == null)
         {
-            return head;
+            return null;
         }
         ListNode fast = head;
         ListNode slow = head;
-        while (fast != null)
+        while (fast.next != null && fast.next.next != null)
         {
+            fast = fast.next.next;
             slow = slow.next;
-            fast = fast.next;
-            if (fast.next != null)
-            {
-                fast = fast.next;
-            }
         }
-
         return slow;
+
+        //this is another wrong version:
+        //        if (head == null || head.next == null)
+        //        {
+        //            return head;
+        //        }
+        //
+        //        ListNode q = head;
+        //        ListNode p = head;
+        //
+        //        while (q.next != null)
+        //        {
+        //            q = q.next;
+        //            p = p.next;
+        //            if (q.next != null)
+        //            {
+        //                q = q.next;
+        //            }
+        //        }
+        //        return p;
     }
 
     //5. reversely print the list (iterative)
