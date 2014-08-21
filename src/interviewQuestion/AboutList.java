@@ -205,53 +205,38 @@ public class AboutList
     public ListNode mergeTwoList(ListNode head1, ListNode head2)
     {
         if (head1 == null)
-        {
             return head2;
-        }
         if (head2 == null)
-        {
             return head1;
-        }
-        ListNode result = null;
-        if (head1.val > head2.val)
-        {
-            result = head2;
-            head2 = head2.next;
-        }
-        else
-        {
-            result = head1;
-            head1 = head1.next;
-        }
+
+        ListNode result = new ListNode(0);
+        ListNode cur = result;
         while (head1 != null && head2 != null)
         {
             if (head1.val > head2.val)
             {
                 result.next = head2;
                 head2 = head2.next;
-                result = result.next;
             }
             else
             {
                 result.next = head1;
                 head1 = head1.next;
-                result = result.next;
             }
+            result = result.next;
         }
-
         if (head1 != null)
         {
             result.next = head1;
         }
-        else if (head2 != null)
+        if (head2 != null)
         {
             result.next = head2;
         }
-
-        return result;
+        return cur.next;
     }
 
-    //6. merge two sorted lists (iterative)
+    //6. merge two sorted lists (recursive)
     public ListNode mergeTwoListRec(ListNode head1, ListNode head2)
     {
         if (head1 == null)
@@ -761,5 +746,38 @@ public class AboutList
 
         slow.next = slow.next.next;
         return head;
+    }
+
+    public ListNode swapPairs(ListNode head)
+    {
+        if (head == null || head.next == null)
+            return null;
+
+        ListNode first = head;
+        ListNode second = head.next;
+        ListNode third = second.next;
+
+        second.next = first;
+        first.next = swapPairs(third);
+        return second;
+    }
+
+    public ListNode swapPairs2(ListNode head)
+    {
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode cur = dummy, post = head;
+
+        while (post != null && post.next != null)
+        {
+            ListNode temp = post.next.next;
+            post.next.next = cur.next;
+            cur.next = post.next;
+            post.next = temp;
+            cur = post;
+            post = cur.next;
+        }
+
+        return dummy.next;
     }
 }

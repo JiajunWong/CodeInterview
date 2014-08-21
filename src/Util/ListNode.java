@@ -31,9 +31,14 @@ public class ListNode
 
     public static ListNode autoInit(int len)
     {
-        if (len <= 0)
+        if (len < 0)
         {
             throw new IllegalArgumentException();
+        }
+
+        if (len == 0)
+        {
+            return null;
         }
 
         ListNode result = new ListNode(0);
@@ -43,6 +48,54 @@ public class ListNode
             ListNode node = new ListNode(i + 1);
             cur.next = node;
             cur = cur.next;
+        }
+        return result.next;
+    }
+
+    /**
+     * include end
+     * @param start
+     * @param end
+     * @return
+     */
+    public static ListNode autoInit(int start, int end)
+    {
+        if (start <= 0 || end <= 0 || start > end)
+        {
+            throw new IllegalArgumentException();
+        }
+        ListNode result = new ListNode(0);
+        ListNode cur = result;
+        for (; start <= end; start++)
+        {
+            ListNode node = new ListNode(start);
+            cur.next = node;
+            cur = cur.next;
+        }
+        return result.next;
+    }
+
+    public static ListNode autoRandomInit(int len)
+    {
+        if (len < 0)
+        {
+            throw new IllegalArgumentException();
+        }
+
+        if (len == 0)
+        {
+            return null;
+        }
+
+        ListNode result = new ListNode(0);
+        ListNode cur = result;
+        while (len > 0)
+        {
+            int v = (int) (Math.random() * 100 + 1);
+            ListNode node = new ListNode(v);
+            cur.next = node;
+            cur = cur.next;
+            len--;
         }
         return result.next;
     }
