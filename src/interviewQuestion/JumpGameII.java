@@ -1,5 +1,6 @@
 package interviewQuestion;
 
+
 public class JumpGameII
 {
     public int jump(int[] A)
@@ -19,14 +20,4 @@ public class JumpGameII
         }
         return result;
     }
-
-    /**
-     * @param args
-     */
-    public static void main(String[] args)
-    {
-        // TODO Auto-generated method stub
-
-    }
-
 }

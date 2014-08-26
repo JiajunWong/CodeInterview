@@ -30,14 +30,4 @@ public class LengthOfLastWord
 
         return result;
     }
-
-    /**
-     * @param args
-     */
-    public static void main(String[] args)
-    {
-        String s = "a ";
-        System.out.println(lengthOfLastWord(s));
-    }
-
 }
