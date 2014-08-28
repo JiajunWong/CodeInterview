@@ -13,40 +13,40 @@ public class CopyListWithRandomPointer
             return null;
         }
         RandomListNode result = null;
-        RandomListNode pOld = head;
+        RandomListNode old = head;
         RandomListNode oldNext = null;
         RandomListNode pNew = result;
 
         do
         {
-            oldNext = pOld.next;
-            pNew = new RandomListNode(head.label);
-            pOld.next = pNew;
+            oldNext = old.next;
+            pNew = new RandomListNode(old.label);
+            old.next = pNew;
             pNew.next = oldNext;
 
             if (result == null)
             {
                 result = pNew;
             }
-            pOld = oldNext;
+            old = oldNext;
         }
-        while (pOld != null);
-        pOld = head;
-        while (pOld != null)
+        while (old != null);
+        old = head;
+        while (old != null)
         {
-            if (pOld.random != null)
+            if (old.random != null)
             {
-                pOld.next.random = pOld.random.next;
-                pOld = pOld.next.next;
+                old.next.random = old.random.next;
+                old = old.next.next;
             }
         }
-        pOld = head;
+        old = head;
         pNew = result;
         while (pNew.next != null)
         {
-            pOld.next = pNew.next;
-            pOld = pOld.next;
-            pNew.next = pOld.next;
+            old.next = pNew.next;
+            old = old.next;
+            pNew.next = old.next;
             pNew = pNew.next;
         }
         return result;
