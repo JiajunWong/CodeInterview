@@ -10,7 +10,7 @@ public class ReverseInteger
             x = -x;
             flag = true;
         }
-        
+
         int offset = 0;
         int result = 0;
         int left = x;
@@ -22,12 +22,29 @@ public class ReverseInteger
         }
         offset = left % 10;
         result = result * 10 + offset;
-        
+
         if (flag)
         {
             result = -result;
         }
-        
+
+        return result;
+    }
+
+    public int reverseII(int x)
+    {
+        boolean isNeg = false;
+        if (x < 0)
+        {
+            isNeg = true;
+            x = -x;
+        }
+        StringBuilder sb = new StringBuilder(new Integer(x).toString());
+        int result = Integer.parseInt(sb.reverse().toString());
+        if (isNeg)
+        {
+            result = -result;
+        }
         return result;
     }
 
