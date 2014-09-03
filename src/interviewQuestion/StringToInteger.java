@@ -27,13 +27,6 @@ public class StringToInteger
             i++;
 
         double result = 0;
-        //        for (int j = i; j < str.length(); j++)
-        //        {
-        //            if (str.charAt(j) <= '9' && str.charAt(j) >= '0')
-        //            {
-        //                result = result * 10 + (str.charAt(j) - '0');
-        //            }
-        //        }
         while (i < str.length() && str.charAt(i) <= '9' && str.charAt(i) >= '0')
         {
             result = result * 10 + (str.charAt(i) - '0');

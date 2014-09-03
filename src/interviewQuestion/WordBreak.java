@@ -35,32 +35,33 @@ public class WordBreak
 
     public boolean wordBreakII(String s, Set<String> dict)
     {
-        if (s == null || dict.size() == 0)
+        boolean[] t = new boolean[s.length() + 1];
+        t[0] = true; //set first to be true, why?
+        //Because we need initial state
+
+        for (int i = 0; i < s.length(); i++)
         {
-            return false;
-        }
-        int len = s.length();
-        boolean possible[][] = new boolean[len][len + 1];
-        for (int j = 1; j < len; j++)
-        {
-            for (int i = 0; i < len; i++)
+            //should continue from match position
+            if (!t[i])
+                continue;
+
+            for (String a : dict)
             {
-                String t = s.substring(i, i + j);
-                if (dict.contains(t))
-                {
-                    possible[i][j] = true;
+                int len = a.length();
+                int end = i + len;
+                if (end > s.length())
                     continue;
-                }
-                for (int k = 1; k < j; k++)
+
+                if (t[end])
+                    continue;
+
+                if (s.substring(i, end).equals(a))
                 {
-                    if (possible[i][k] && possible[i + k][j - k])
-                    {
-                        possible[i][j] = true;
-                        break;
-                    }
+                    t[end] = true;
                 }
             }
         }
-        return possible[0][len];
+
+        return t[s.length()];
     }
 }

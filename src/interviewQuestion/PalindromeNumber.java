@@ -9,6 +9,7 @@ public class PalindromeNumber
             return true;
         }
 
+        //TODO: may overflow
         int reverse = ReverseInteger.reverse(x);
 
         if (reverse == x)
@@ -16,6 +17,27 @@ public class PalindromeNumber
             return true;
         }
         return false;
+    }
+
+    public static boolean isPalindromeII(int x)
+    {
+        if (x < 0)
+            return false;
+        int div = 1;
+        while (x / div >= 10)
+        {
+            div *= 10;
+        }
+        while (x != 0)
+        {
+            int l = x / div;
+            int r = x % 10;
+            if (l != r)
+                return false;
+            x = (x % div) / 10;
+            div /= 100;
+        }
+        return true;
     }
 
     /**
