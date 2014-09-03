@@ -2,7 +2,7 @@ package interviewQuestion;
 
 public class RomanToInteger
 {
-    public static int romanToInt(String s)
+    public int romanToInt(String s)
     {
         int i, total, pre, cur;
 
@@ -26,7 +26,7 @@ public class RomanToInteger
         return total;
     }
 
-    public static int charToInt(char c)
+    public int charToInt(char c)
     {
         int data = 0;
 
@@ -56,14 +56,4 @@ public class RomanToInteger
         }
         return data;
     }
-
-    /**
-     * @param args
-     */
-    public static void main(String[] args)
-    {
-        // TODO Auto-generated method stub
-
-    }
-
 }
