@@ -17,7 +17,7 @@ public class WordSearch
 
     private boolean dfs(char[][] board, String word, int index, int i, int j)
     {
-        if (index == word.length() - 1 && word.charAt(word.length() - 1) == board[i][j])
+        if (index == word.length() - 1 && word.charAt(index) == board[i][j])
         {
             return true;
         }
@@ -40,7 +40,7 @@ public class WordSearch
         {
             b3 = dfs(board, word, index + 1, i + 1, j);
         }
-        if (!b1 && !b2 && b3 && j + 1 < board[0].length && board[i][j + 1] != '.')
+        if (!b1 && !b2 && !b3 && j + 1 < board[0].length && board[i][j + 1] != '.')
         {
             b4 = dfs(board, word, index + 1, i, j + 1);
         }

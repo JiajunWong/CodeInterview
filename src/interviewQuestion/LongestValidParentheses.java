@@ -20,10 +20,10 @@ public class LongestValidParentheses
                 int j = i + 1 + d[i + 1];
                 if (j <= length - 1 && s.charAt(j) == ')')
                 {
-                    d[i] = d[i + 1] + 2;
+                    d[i] = d[i + 1] + 2;//(()())
                     if (j + 1 <= length - 1)
                     {
-                        d[i] += d[j + 1];
+                        d[i] += d[j + 1];//()()....()
                     }
                 }
                 result = Math.max(result, d[i]);
