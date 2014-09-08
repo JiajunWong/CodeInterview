@@ -1,5 +1,6 @@
 package interviewQuestion;
 
+//http://blog.csdn.net/linhuanmars/article/details/21145039
 public class ZigZagConversion
 {
     public String convert(String s, int nRows)

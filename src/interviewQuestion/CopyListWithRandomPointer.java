@@ -2,53 +2,47 @@ package interviewQuestion;
 
 import util.RandomListNode;
 
-//http://www.cnblogs.com/TenosDoIt/p/3387000.html
-//TODO: wrong answer;
+//http://www.programcreek.com/2012/12/leetcode-copy-list-with-random-pointer/
 public class CopyListWithRandomPointer
 {
     public RandomListNode copyRandomList(RandomListNode head)
     {
+
         if (head == null)
-        {
             return null;
-        }
-        RandomListNode result = null;
-        RandomListNode old = head;
-        RandomListNode oldNext = null;
-        RandomListNode pNew = result;
 
-        do
-        {
-            oldNext = old.next;
-            pNew = new RandomListNode(old.label);
-            old.next = pNew;
-            pNew.next = oldNext;
+        RandomListNode p = head;
 
-            if (result == null)
-            {
-                result = pNew;
-            }
-            old = oldNext;
-        }
-        while (old != null);
-        old = head;
-        while (old != null)
+        // copy every node and insert to list
+        while (p != null)
         {
-            if (old.random != null)
-            {
-                old.next.random = old.random.next;
-                old = old.next.next;
-            }
+            RandomListNode copy = new RandomListNode(p.label);
+            copy.next = p.next;
+            p.next = copy;
+            p = copy.next;
         }
-        old = head;
-        pNew = result;
-        while (pNew.next != null)
+
+        // copy random pointer for each new node
+        p = head;
+        while (p != null)
         {
-            old.next = pNew.next;
-            old = old.next;
-            pNew.next = old.next;
-            pNew = pNew.next;
+            if (p.random != null)
+                p.next.random = p.random.next;
+            p = p.next.next;
         }
-        return result;
+
+        // break list to two
+        p = head;
+        RandomListNode newHead = head.next;
+        while (p != null)
+        {
+            RandomListNode temp = p.next;
+            p.next = temp.next;
+            if (temp.next != null)
+                temp.next = temp.next.next;
+            p = p.next;
+        }
+
+        return newHead;
     }
 }
