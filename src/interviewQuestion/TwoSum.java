@@ -16,8 +16,9 @@ public class TwoSum
                 {
                     return new int[] { hashMap.get(target - numbers[i]) + 1, i + 1 };
                 }
-                else {
-                    return new int[] {i + 1 , hashMap.get(target - numbers[i]) + 1};
+                else
+                {
+                    return new int[] { i + 1, hashMap.get(target - numbers[i]) + 1 };
                 }
             }
             hashMap.put(numbers[i], i);

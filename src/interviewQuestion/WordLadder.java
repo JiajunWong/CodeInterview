@@ -12,7 +12,7 @@ public class WordLadder
         {
             return 0;
         }
-        if (dict.size() == 0)
+        if (dict == null || dict.size() == 0)
         {
             return 0;
         }

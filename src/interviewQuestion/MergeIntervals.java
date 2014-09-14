@@ -6,12 +6,10 @@ import java.util.Comparator;
 
 import util.Interval;
 
-
 public class MergeIntervals
 {
     public ArrayList<Interval> merge(ArrayList<Interval> intervals)
     {
-        // Note: The Solution object is instantiated only once and is reused by each test case.
         ArrayList<Interval> result = new ArrayList<Interval>();
 
         if ((intervals == null) || (intervals.size() == 0))
