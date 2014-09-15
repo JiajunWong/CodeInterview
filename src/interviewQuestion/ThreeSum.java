@@ -2,6 +2,7 @@ package interviewQuestion;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 public class ThreeSum
@@ -15,10 +16,9 @@ public class ThreeSum
 
         // sort array
         Arrays.sort(num);
-
         for (int i = 0; i < num.length - 2; i++)
         {
-            // //avoid duplicate solutions
+            //avoid duplicate solutions
             if (i == 0 || num[i] > num[i - 1])
             {
 
