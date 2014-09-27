@@ -1,14 +1,14 @@
-package interviewQuestion;
+package test;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
 import util.Interval;
 
-
-public class InsertInterval
+public class InsertIntervalTest
 {
-    public List<Interval> insert(List<Interval> intervals, Interval newInterval)
+    public static List<Interval> insert(List<Interval> intervals, Interval newInterval)
     {
         if (intervals == null || newInterval == null)
         {
@@ -47,5 +47,12 @@ public class InsertInterval
         }
         intervals.add(newInterval);
         return intervals;
+    }
+
+    public static void main(String[] args)
+    {
+        ArrayList<Interval> intervals = Interval.autoInit(10);
+        Interval cur = new Interval(15, 55);
+        Interval.printIntervals((ArrayList<Interval>) insert(intervals, cur));
     }
 }
