@@ -4,36 +4,22 @@ public class ImplementStrStr
 {
     public String strStr(String haystack, String needle)
     {
-        int haystackLength = haystack.length();
-        int needleLength = needle.length();
-
-        if (haystackLength == needleLength && needleLength == 0)
-        {
-            return "";
-        }
-        if (needleLength == 0)
+        if (needle.length() == 0)
         {
             return haystack;
         }
-
-        for (int i = 0; i < haystackLength; i++)
+        for (int i = 0; i < haystack.length() - needle.length() + 1; i++)
         {
-            if (haystackLength - i + 1 < needleLength)
-            {
-                return null;
-            }
-
-            int k = i;
             int j = 0;
-
-            while (j < needleLength && k < haystackLength && needle.charAt(j) == haystack.charAt(k))
+            int k = i;
+            while (j < needle.length() && haystack.charAt(k) == needle.charAt(j))
             {
-                j++;
-                k++;
-                if (j == needleLength)
+                if (j == needle.length() - 1)
                 {
                     return haystack.substring(i);
                 }
+                j++;
+                k++;
             }
         }
         return null;

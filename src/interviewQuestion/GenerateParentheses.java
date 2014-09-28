@@ -1,49 +1,39 @@
 package interviewQuestion;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GenerateParentheses
 {
-    public ArrayList<String> generateParenthesis(int n)
+    public List<String> generateParenthesis(int n)
     {
         ArrayList<String> result = new ArrayList<String>();
-
         if (n <= 0)
         {
             return result;
         }
-
-        helper(n, n, new String(), result);
+        dfs(n, n, new String(), result);
         return result;
     }
 
-    private void helper(int l, int r, String string, ArrayList<String> result)
+    private void dfs(int l, int r, String s, ArrayList<String> result)
     {
         if (r < l)
         {
             return;
         }
-        if (l == 0 && r == 0)
+        if (r == 0 && l == 0)
         {
-            result.add(string);
+            result.add(s);
+            return;
         }
         if (l > 0)
         {
-            helper(l - 1, r, string + "(", result);
+            dfs(l - 1, r, s + "(", result);
         }
         if (r > 0)
         {
-            helper(l, r - 1, string + ")", result);
+            dfs(l, r - 1, s + ")", result);
         }
     }
-
-    /**
-     * @param args
-     */
-    public static void main(String[] args)
-    {
-        // TODO Auto-generated method stub
-
-    }
-
 }
