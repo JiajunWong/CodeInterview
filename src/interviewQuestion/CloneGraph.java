@@ -28,19 +28,19 @@ public class CloneGraph
         while (!queue.isEmpty())
         {
             UndirectedGraphNode cur = queue.poll();
-            List<UndirectedGraphNode> array = cur.neighbors;
-            for (UndirectedGraphNode n : array)
+            List<UndirectedGraphNode> neighbors = cur.neighbors;
+            for (UndirectedGraphNode neighbor : neighbors)
             {
-                if (!map.containsKey(n))
+                if (!map.containsKey(neighbor))
                 {
-                    UndirectedGraphNode copy = new UndirectedGraphNode(n.label);
-                    queue.add(n);
-                    map.put(n, copy);
+                    UndirectedGraphNode copy = new UndirectedGraphNode(neighbor.label);
+                    queue.add(neighbor);
+                    map.put(neighbor, copy);
                     map.get(cur).neighbors.add(copy);
                 }
                 else
                 {
-                    map.get(cur).neighbors.add(map.get(n));
+                    map.get(cur).neighbors.add(map.get(neighbor));
                 }
             }
         }
