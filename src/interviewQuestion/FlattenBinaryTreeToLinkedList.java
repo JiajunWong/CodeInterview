@@ -4,35 +4,33 @@ import java.util.Stack;
 
 import util.TreeNode;
 
-
 public class FlattenBinaryTreeToLinkedList
 {
     public void flatten(TreeNode root)
     {
-        if (root == null || (root.left == null && root.right == null))
-            return;
         Stack<TreeNode> stack = new Stack<TreeNode>();
+        TreeNode p = root;
 
-        TreeNode cur = root;
-        while (cur != null || !stack.isEmpty())
+        while (p != null || !stack.empty())
         {
-            //TODO: miss something ..
-            while (cur.left != null)
+
+            if (p.right != null)
             {
-                if (cur.right != null)
-                {
-                    stack.push(cur.right);
-                }
-                cur.right = cur.left;
-                cur.left = null;
-                cur = cur.right;
+                stack.push(p.right);
             }
 
-            if (cur.right == null && !stack.isEmpty())
+            if (p.left != null)
             {
-                cur.right = stack.pop();
+                p.right = p.left;
+                p.left = null;
             }
-            cur = cur.right;
+            else if (!stack.empty())
+            {
+                TreeNode temp = stack.pop();
+                p.right = temp;
+            }
+
+            p = p.right;
         }
     }
 
@@ -52,7 +50,7 @@ public class FlattenBinaryTreeToLinkedList
             lastVisit.right = root;
         }
         lastVisit = root;
-        flatten(root.left);
-        flatten(savedRight);
+        flattenRec(root.left);
+        flattenRec(savedRight);
     }
 }
