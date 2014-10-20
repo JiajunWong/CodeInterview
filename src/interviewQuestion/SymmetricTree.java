@@ -26,14 +26,4 @@ public class SymmetricTree
         }
         return isSymmetricTree(left.left, right.right) && isSymmetricTree(left.right, right.left);
     }
-
-    /**
-     * @param args
-     */
-    public static void main(String[] args)
-    {
-        // TODO Auto-generated method stub
-
-    }
-
 }

@@ -1,5 +1,6 @@
 package interviewQuestion;
 
+//http://blog.csdn.net/yutianzuijin/article/details/11499917
 public class MedianOfTwoSortedArrays
 {
     double findMedianSortedArrays(int A[], int m, int B[], int n)

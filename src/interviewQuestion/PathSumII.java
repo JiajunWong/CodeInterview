@@ -12,10 +12,10 @@ public class PathSumII
     {
         ArrayList<List<Integer>> result = new ArrayList<List<Integer>>();
         ArrayList<Integer> current = new ArrayList<Integer>();
-        return rec(root, sum, current, result);
+        return dfs(root, sum, current, result);
     }
 
-    private List<List<Integer>> rec(TreeNode root, int sum, ArrayList<Integer> current, List<List<Integer>> result)
+    private List<List<Integer>> dfs(TreeNode root, int sum, ArrayList<Integer> current, List<List<Integer>> result)
     {
         if (root == null)
         {
@@ -26,8 +26,8 @@ public class PathSumII
         {
             result.add(current);
         }
-        rec(root.left, sum - root.val, current, result);
-        rec(root.right, sum - root.val, current, result);
+        dfs(root.left, sum - root.val, current, result);
+        dfs(root.right, sum - root.val, current, result);
         return result;
     }
 }

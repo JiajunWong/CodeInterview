@@ -2,30 +2,29 @@ package interviewQuestion;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class NQueens
 {
-    public ArrayList<String[]> solveNQueens(int n)
+    public List<String[]> solveNQueens(int n)
     {
         ArrayList<String[]> result = new ArrayList<String[]>();
-        if (n < 1)
+        if (n <= 0)
         {
             return result;
         }
         String[] rows = new String[n];
-        int row = 0;
-        solutions(row, n, rows, result);
+        dfs(0, n, rows, result);
         return result;
     }
 
-    private void solutions(int row, int n, String[] rows, ArrayList<String[]> result)
+    private void dfs(int row, int n, String[] rows, ArrayList<String[]> result)
     {
         if (row >= n)
         {
             result.add(rows.clone());
             return;
         }
-
         for (int col = 0; col < n; col++)
         {
             if (!isValid(col, row, rows))
@@ -38,7 +37,7 @@ public class NQueens
             chars[col] = 'Q';
 
             rows[row] = String.valueOf(chars);
-            solutions(row + 1, n, rows, result);
+            dfs(row + 1, n, rows, result);
         }
     }
 
@@ -48,23 +47,17 @@ public class NQueens
         {
             int indexQ = rows[i].indexOf('Q');
             if (indexQ == col)
+            {
                 return false;
+            }
 
-            int rowDistance = Math.abs(row - i);
-            int colDistance = Math.abs(col - indexQ);
-            if (rowDistance == colDistance)
+            int rowDis = Math.abs(row - i);
+            int colDis = Math.abs(col - indexQ);
+            if (rowDis == colDis)
+            {
                 return false;
+            }
         }
         return true;
     }
-
-    /**
-     * @param args
-     */
-    public static void main(String[] args)
-    {
-        // TODO Auto-generated method stub
-
-    }
-
 }

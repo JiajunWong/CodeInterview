@@ -2,7 +2,7 @@ package interviewQuestion;
 
 public class PermutationSequence
 {
-    public String getPermutation(int n, int k)
+    public static String getPermutation(int n, int k)
     {
         boolean[] output = new boolean[n];
         StringBuilder buf = new StringBuilder("");
@@ -36,5 +36,10 @@ public class PermutationSequence
         }
 
         return buf.toString();
+    }
+
+    public static void main(String[] args)
+    {
+        System.out.println(getPermutation(8, 5));
     }
 }
