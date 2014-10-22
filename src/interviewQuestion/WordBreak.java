@@ -2,66 +2,35 @@ package interviewQuestion;
 
 import java.util.Set;
 
-//TODO: wrong answer;
+/*
+Given a string s and a dictionary of words dict, determine if s can be segmented into a space-separated sequence of one or more dictionary words.
+
+For example, given
+s = "leetcode",
+dict = ["leet", "code"]. 
+*/
 public class WordBreak
 {
-    //TODO: TLE
-    public boolean wordBreakI(String s, Set<String> dict)
-    {
-        return wordBreakHelper(s, dict, 0);
-    }
-
-    public boolean wordBreakHelper(String s, Set<String> dict, int start)
-    {
-        if (start == s.length())
-            return true;
-
-        for (String a : dict)
-        {
-            int len = a.length();
-            int end = start + len;
-
-            //end index should be <= string length
-            if (end > s.length())
-                continue;
-
-            if (s.substring(start, start + len).equals(a))
-                if (wordBreakHelper(s, dict, start + len))
-                    return true;
-        }
-
-        return false;
-    }
-
     public boolean wordBreakII(String s, Set<String> dict)
     {
-        boolean[] t = new boolean[s.length() + 1];
-        t[0] = true; //set first to be true, why?
-        //Because we need initial state
-
-        for (int i = 0; i < s.length(); i++)
+        int n = s.length();
+        boolean[] dp = new boolean[n + 1];
+        dp[0] = true;
+        for (int i = 1; i <= n; i++)
         {
-            //should continue from match position
-            if (!t[i])
-                continue;
-
-            for (String a : dict)
+            if (dict.contains(s.substring(0, i)))
             {
-                int len = a.length();
-                int end = i + len;
-                if (end > s.length())
-                    continue;
-
-                if (t[end])
-                    continue;
-
-                if (s.substring(i, end).equals(a))
+                dp[i] = true;
+                continue;
+            }
+            for (int j = 0; j < i; j++)
+            {
+                if (dp[j] && dict.contains(s.substring(j, i)))
                 {
-                    t[end] = true;
+                    dp[i] = true;
                 }
             }
         }
-
-        return t[s.length()];
+        return dp[n];
     }
 }
