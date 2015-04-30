@@ -2,26 +2,24 @@ package interviewQuestion;
 
 public class ImplementStrStr
 {
-    public String strStr(String haystack, String needle)
+    public int strStr(String haystack, String needle)
     {
         if (needle.length() == 0)
         {
-            return haystack;
+            return 0;
+        }
+        if (haystack.length() < needle.length())
+        {
+            return -1;
         }
         for (int i = 0; i < haystack.length() - needle.length() + 1; i++)
         {
-            int j = 0;
-            int k = i;
-            while (j < needle.length() && haystack.charAt(k) == needle.charAt(j))
+            String substring = haystack.substring(i, i + needle.length());
+            if (substring.equals(needle))
             {
-                if (j == needle.length() - 1)
-                {
-                    return haystack.substring(i);
-                }
-                j++;
-                k++;
+                return i;
             }
         }
-        return null;
+        return -1;
     }
 }

@@ -30,6 +30,7 @@ public class WordBreakII
         }
         if (dp[n] == false)
             return ret;
+
         StringBuilder cur = new StringBuilder();
         dfs(s, 0, cur, ret, dict);
         return ret;

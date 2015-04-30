@@ -49,6 +49,7 @@ public class ScrambleString
     }
 
     //DP
+    //dp[k][i][j] means whether s1[i ... i + k] is scramble from s2[j ... j + k];
     public boolean isScrambleDP(String s1, String s2)
     {
         int len = s1.length();
