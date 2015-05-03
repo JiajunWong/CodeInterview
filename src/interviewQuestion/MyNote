@@ -1,10 +1,33 @@
+skiped:
+ConstructBinaryTreefromInorderandPostorderTraversal
+ConstructBinaryTreefromPreorderandInorderTraversal
+
+hard:
+DecodeWays
+
+
 BFS:
 BinaryTreeLevelOrderTraversal
 BinaryTreeLevelOrderTraversalII
 BinaryTreeZigzagLevelOrderTraversal
+CloneGraph
 
 DFS:
 BinaryTreeInorderTraversal
 BinaryTreeMaximumPathSum
 BinaryTreePostorderTraversal
 BinaryTreePreorderTraversal
+Combinations
+CombinationSum
+CombinationSumII
+ConvertSortedArrayToBinarySearchTree
+ConvertSortedListToBinarySearchTree
+DecodeWays
+
+DP:
+ClimbingStairs
+DecodeWays
+
+Two Points:
+ContainerWithMostWater
+

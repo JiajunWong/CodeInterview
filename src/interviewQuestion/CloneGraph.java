@@ -34,6 +34,7 @@ public class CloneGraph
                 if (!map.containsKey(neighbor))
                 {
                     UndirectedGraphNode copy = new UndirectedGraphNode(neighbor.label);
+                    //cur is remove from queue!!! no need add back!!!
                     queue.add(neighbor);
                     map.put(neighbor, copy);
                     map.get(cur).neighbors.add(copy);
