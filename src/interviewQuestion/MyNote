@@ -27,6 +27,8 @@ DecodeWays
 DP:
 ClimbingStairs
 DecodeWays
+EditDistance
+DistinctSubsequences
 
 Two Points:
 ContainerWithMostWater
