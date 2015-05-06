@@ -2,6 +2,7 @@ skiped:
 ConstructBinaryTreefromInorderandPostorderTraversal
 ConstructBinaryTreefromPreorderandInorderTraversal
 GrayCode
+LargestRectangleInHistogram
 
 hard:
 DecodeWays
@@ -24,16 +25,21 @@ ConvertSortedArrayToBinarySearchTree
 ConvertSortedListToBinarySearchTree
 DecodeWays
 GenerateParentheses
+LetterCombinationsOfAPhoneNumber
 
 DP:
 ClimbingStairs
 DecodeWays
 EditDistance
 DistinctSubsequences
+InterleavingString
 
 Two Points:
 ContainerWithMostWater
 ImplementStrStr
+
+List:
+InsertionSortList
 
 Stack:
 EvaluateReversePolishNotation
