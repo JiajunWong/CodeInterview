@@ -1,10 +1,10 @@
 skiped:
 ConstructBinaryTreefromInorderandPostorderTraversal
 ConstructBinaryTreefromPreorderandInorderTraversal
+GrayCode
 
 hard:
 DecodeWays
-
 
 BFS:
 BinaryTreeLevelOrderTraversal
@@ -23,6 +23,7 @@ CombinationSumII
 ConvertSortedArrayToBinarySearchTree
 ConvertSortedListToBinarySearchTree
 DecodeWays
+GenerateParentheses
 
 DP:
 ClimbingStairs
@@ -32,7 +33,9 @@ DistinctSubsequences
 
 Two Points:
 ContainerWithMostWater
+ImplementStrStr
 
 Stack:
 EvaluateReversePolishNotation
+FlattenBinaryTreeToLinkedList
 
