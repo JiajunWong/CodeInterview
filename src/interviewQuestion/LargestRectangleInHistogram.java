@@ -11,8 +11,7 @@ public class LargestRectangleInHistogram
         Stack<Integer> stack = new Stack<Integer>();
         int i = 0;
         int maxArea = 0;
-        int[] h = new int[height.length + 1];
-        h = Arrays.copyOf(height, height.length + 1);
+        int[] h = Arrays.copyOf(height, height.length + 1);
         while (i < h.length)
         {
             if (stack.isEmpty() || h[stack.peek()] <= h[i])

@@ -13,7 +13,7 @@ public class FourSum
     Elements in a quadruplet (a,b,c,d) must be in non-descending order. (ie, a <= b <= c <= d)
     The solution set must not contain duplicate quadruplets. 
     */
-    public ArrayList<ArrayList<Integer>> fourSum(int[] num, int target)
+    public static ArrayList<ArrayList<Integer>> fourSum(int[] num, int target)
     {
         Arrays.sort(num);
         HashSet<ArrayList<Integer>> hashSet = new HashSet<ArrayList<Integer>>();
@@ -57,5 +57,18 @@ public class FourSum
             }
         }
         return result;
+    }
+
+    public static void main(String[] args)
+    {
+        int[] nums = { 0, 0, 0, 0 };
+        ArrayList<ArrayList<Integer>> arrayLists = fourSum(nums, 0);
+        for (ArrayList<Integer> arrayList : arrayLists)
+        {
+            for (int i = 0; i < arrayList.size(); i++)
+            {
+                System.out.println(arrayList.get(i));
+            }
+        }
     }
 }
