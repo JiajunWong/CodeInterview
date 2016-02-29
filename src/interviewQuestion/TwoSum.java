@@ -4,26 +4,25 @@ import java.util.HashMap;
 
 public class TwoSum
 {
-    public static int[] twoSum(int[] numbers, int target)
+    public static int[] twoSum(int[] nums, int target)
     {
-        HashMap<Integer, Integer> hashMap = new HashMap<Integer, Integer>();
-        for (int i = 0; i < numbers.length; i++)
+        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+        int[] result = new int[2];
+        if (nums == null || nums.length < 2)
         {
-            //            hashMap.put(numbers[i], i + 1);
-            if (hashMap.get(target - numbers[i]) != null)
-            {
-                if ((hashMap.get(target - numbers[i]) + 1) <= i + 1)
-                {
-                    return new int[] { hashMap.get(target - numbers[i]) + 1, i + 1 };
-                }
-                else
-                {
-                    return new int[] { i + 1, hashMap.get(target - numbers[i]) + 1 };
-                }
-            }
-            hashMap.put(numbers[i], i);
+            return result;
         }
-        return null;
+        for (int i = 0; i < nums.length; i++)
+        {
+            if (map.get(target - nums[i]) != null)
+            {
+                result[0] = map.get(target - nums[i]) + 1;
+                result[1] = i + 1;
+            }
+            map.put(nums[i], i);
+        }
+
+        return result;
     }
 
     public static void main(String[] args)

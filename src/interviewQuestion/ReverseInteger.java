@@ -39,11 +39,44 @@ public class ReverseInteger
             isNeg = true;
             x = -x;
         }
-        StringBuilder sb = new StringBuilder(new Integer(x).toString());
-        int result = Integer.parseInt(sb.reverse().toString());
-        if (isNeg)
+        StringBuilder sb = new StringBuilder(Integer.toString(x));
+        long result = Long.parseLong(sb.reverse().toString());
+        if (result < Integer.MAX_VALUE)
         {
-            result = -result;
+            if (isNeg)
+            {
+                result = -result;
+            }
+            return (int) result;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    public static int reverse1(int x) {
+        boolean isNeg = false;
+        if (x < 0)
+        {
+            isNeg = true;
+            x = Math.abs(x);
+        }
+
+        StringBuilder sb = new StringBuilder(Integer.toString(x));
+        double r = Double.parseDouble(sb.reverse().toString());
+        if (r > Integer.MAX_VALUE)
+        {
+            return 0;
+        }
+
+        int result = 0;
+        while(x > 0){
+            result = result * 10 + x % 10;
+            x = x / 10;
+        }
+        if(isNeg){
+            return -result;
         }
         return result;
     }
@@ -53,8 +86,8 @@ public class ReverseInteger
      */
     public static void main(String[] args)
     {
-        int i = -54321;
-        int result = reverse(i);
+        int i = -2147483648;
+        int result = reverse1(i);
         System.out.println(result);
     }
 

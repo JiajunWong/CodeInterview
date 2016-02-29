@@ -1,7 +1,6 @@
 package interviewQuestion;
 
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.*;
 
 /*
 Given a string, find the length of the longest substring without repeating characters.
@@ -65,14 +64,126 @@ public class LongestSubstringWithoutRepeatingCharacters
         return Math.max(pre, map.size());
     }
 
+    public HashSet<String> longestPalindrome(String s)
+    {
+        HashSet<String> hashSet = new HashSet<String>();
+        if (s == null || s.length() == 0)
+            return hashSet;
+        String result = s.substring(0, 1);
+        for (int i = 1; i < s.length(); i++)
+        {
+            String p1 = exp(s, i, i);
+            String p2 = exp(s, i - 1, i);
+            hashSet.add(p1);
+            hashSet.add(p2);
+        }
+        return hashSet;
+    }
+
+    public String exp(String s, int l, int r)
+    {
+        while (l >= 0 && r < s.length())
+        {
+            if (s.charAt(l) == s.charAt(r))
+            {
+                l--;
+                r++;
+            }
+            else
+            {
+                break;
+            }
+        }
+        return s.substring(l + 1, r);
+    }
+
+    int sorted_search(int[] elements, int target)
+    {
+        if (elements == null || elements.length <= 0)
+            return -1;
+
+        for (int i : elements)
+        {
+            System.out.print(i);
+        }
+
+        System.out.println();
+
+        int left = 0;
+        int right = elements.length - 1;
+
+        while (left < right)
+        {
+            int mid = (right - left) / 2 + left;
+            if (elements[mid] > target)
+            {
+                right = mid - 1;
+            }
+            else if (elements[mid] < target)
+            {
+                left = mid + 1;
+            }
+            else
+            {
+                return mid;
+            }
+        }
+
+        return -1;
+    }
+
+    static int check_log_history(String[] events)
+    {
+        final String ACQUIRE = "ACQUIRE";
+        final String RELEASE = "RELEASE";
+
+        Stack<String> stack = new Stack<>();
+        ArrayList<String> arrays = new ArrayList();
+        for (String s : events)
+        {
+            String[] tems = s.split(" ");
+            if (tems[1].equals(ACQUIRE))
+            {
+                if (!stack.contains(tems[2]))
+                {
+                    stack.push(tems[2]);
+                }
+                else
+                {
+                    System.out.println((Integer.valueOf(tems[0]) + 1) + "(acquiring an already held lock.");
+                    return Integer.valueOf(tems[0] + 1);
+                }
+            }
+            else
+            {
+                if (stack.isEmpty() || !stack.contains(tems[2]))
+                {
+                    System.out.println((Integer.valueOf(tems[0]) + 1) + "(releasing a lock not acquired before");
+                    return Integer.valueOf(tems[0] + 1);
+                }
+                String id = stack.pop();
+                if (!id.equals(tems[0]))
+                {
+                    //TODO
+                    System.out.println((Integer.valueOf(tems[0] + 1) + "()"));
+                    return Integer.valueOf(tems[0] + 1);
+                }
+            }
+        }
+
+        if (!stack.isEmpty())
+        {
+            return events.length;
+        }
+
+        return 0;
+    }
+
     /**
      * @param args
      */
     public static void main(String[] args)
     {
-        String string = "wlrbbmqbhcdarzowkkyhiddqscdxrjmowfrxsjybldbefsarcbynecdyggxxpklorellnmpapqfwkhopkmco";
-        int size = lengthOfLongestSubstring(string);
-        System.out.println(size);
     }
 
 }

@@ -38,7 +38,7 @@ public class BinaryTreeLevelOrderTraversal
                     queue.add(treeNode.right);
                 }
             }
-            result.add(new ArrayList<Integer>(arrayList));
+            result.add(new ArrayList<>(arrayList));
         }
         return result;
     }

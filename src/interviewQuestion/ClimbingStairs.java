@@ -2,7 +2,7 @@ package interviewQuestion;
 
 public class ClimbingStairs
 {
-    public int climbStairsDP(int n)
+    public static int climbStairsDP(int n)
     {
         //dp
         //dp[i]: how many ways to reach i.(i < n)
@@ -20,7 +20,7 @@ public class ClimbingStairs
         return dp[n];
     }
 
-    public int climbStairs(int n)
+    public static int climbStairs(int n)
     {
         // Note: The Solution object is instantiated only once and is reused by each test case.
         int p = 1, q = 1;
@@ -31,5 +31,11 @@ public class ClimbingStairs
             p = temp;
         }
         return q;
+    }
+
+    public static void main(String[] strings)
+    {
+        System.out.println("DP: " + climbStairsDP(10));
+        System.out.println("Simple: " + climbStairs(10));
     }
 }

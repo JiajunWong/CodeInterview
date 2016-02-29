@@ -12,31 +12,34 @@ public class AddTwoNumbers
 {
     public static ListNode addTwoNumbers(ListNode l1, ListNode l2)
     {
-        ListNode tem = new ListNode(0);
-        ListNode result = tem;
-        int offset = 0;
-
+        ListNode dummy = new ListNode(0);
+        ListNode result = dummy;
+        int carrier = 0;
         while (l1 != null || l2 != null)
         {
+            int sum = carrier;
             if (l1 != null)
             {
-                offset += l1.val;
+                sum += l1.val;
                 l1 = l1.next;
             }
+
             if (l2 != null)
             {
-                offset += l2.val;
+                sum += l2.val;
                 l2 = l2.next;
             }
 
-            tem.next = new ListNode(offset % 10);
-            tem = tem.next;
-            offset /= 10;
+            carrier = sum / 10;
+            ListNode node = new ListNode(sum % 10);
+            dummy.next = node;
+            dummy = dummy.next;
         }
 
-        if (offset == 1)
+        if (carrier != 0)
         {
-            tem.next = new ListNode(1);
+            dummy.next = new ListNode(carrier);
+            dummy = dummy.next;
         }
 
         return result.next;

@@ -56,7 +56,7 @@ public class StringToInteger
      */
     public static void main(String[] args)
     {
-        String s = "-b23afs3423f";
+        String s = "-23afs3423f";
         int result = atoi(s);
         System.out.println(result);
     }
