@@ -22,35 +22,28 @@ public class AboutBFS
             return result;
         }
         Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        ArrayList<Integer> arrayList = new ArrayList<Integer>();
         queue.add(root);
-        int curNodeNum = 1;
-        int nextNodeNum = 0;
-
-        ArrayList<Integer> array = new ArrayList<Integer>();
+        int num = 0;
         while (!queue.isEmpty())
         {
-            TreeNode node = queue.poll();
-            array.add(node.val);
-            if (node.left != null)
+            num = queue.size();
+            arrayList.clear();
+            for (int i = 0; i < num; i++)
             {
-                queue.add(node.left);
-                nextNodeNum++;
+                TreeNode treeNode = queue.remove();
+                arrayList.add(treeNode.val);
+                if (treeNode.left != null)
+                {
+                    queue.add(treeNode.left);
+                }
+                if (treeNode.right != null)
+                {
+                    queue.add(treeNode.right);
+                }
             }
-            if (node.right != null)
-            {
-                queue.add(node.right);
-                nextNodeNum++;
-            }
-            curNodeNum--;
-            if (curNodeNum == 0)
-            {
-                result.add(new ArrayList<Integer>(array));
-                array.clear();
-                curNodeNum = nextNodeNum;
-                nextNodeNum = 0;
-            }
+            result.add(new ArrayList<>(arrayList));
         }
-
         return result;
     }
 

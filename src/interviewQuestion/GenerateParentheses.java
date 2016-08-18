@@ -12,7 +12,7 @@ public class GenerateParentheses
         {
             return result;
         }
-        dfs(n, n, new String(), result);
+        dfs(n, n, "", result);
         return result;
     }
 
